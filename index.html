@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <title>MovieFinder</title>
+</head>
+<body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">MovieFinder</h1>
+      <div class="field has-addons">
+        <div class="control">
+          <input class="input" type="text" id="searchInput" placeholder="Search for a movie">
+        </div>
+        <div class="control">
+          <button class="button is-primary" id="searchButton">Search</button>
+        </div>
+      </div>
+      <div id="movieList" class="columns is-multiline"></div>
+      <div id="movieDetails" class="columns is-multiline"></div>
+      <div id="trailerSection"></div>
+    </div>
+  </section>
+  <script src="script.js"></script>
+</body>
+</html>

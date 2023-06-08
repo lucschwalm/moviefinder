@@ -1,0 +1,43 @@
+body {
+    padding: 2rem;
+  }
+  
+  .title {
+    margin-bottom: 1.5rem;
+  }
+  
+  .input {
+    width: 60%;
+  }
+  
+  .button {
+    margin-left: 1rem;
+  }
+  
+  .column {
+    margin-bottom: 1rem;
+  }
+  
+  #movieList {
+    margin-top: 2rem;
+  }
+  
+  #movieDetails {
+    margin-top: 2rem;
+  }
+  
+  #trailerSection {
+    margin-top: 2rem;
+  }
+  
+  /* Responsive styles */
+  
+  @media screen and (max-width: 768px) {
+    .input {
+      width: 100%;
+    }
+  
+    .column {
+      flex-basis: 50%;
+    }
+  }
