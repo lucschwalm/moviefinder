@@ -7,21 +7,31 @@
   <title>MovieFinder</title>
 </head>
 <body>
-  <section class="section">
-    <div class="container">
-      <h1 class="title">MovieFinder</h1>
+  <section class="hero is-primary">
+    <div class="hero-body columns ">
+      <h1 class="title column">MovieFinder</h1>
+      <h1 class="title column has-text-right"> History </h1>
+    </div>
+  </section>
+    <section class="section">
+     <div class ="column is-half is-offset-one-quarter is-medium">
       <div class="field has-addons">
-        <div class="control">
-          <input class="input" type="text" id="searchInput" placeholder="Search for a movie">
+        <div class="control is-expanded">
+        <input id="searchInput" class="input is-medium" type="text" placeholder="Search for a movie">
         </div>
         <div class="control">
           <button class="button is-primary" id="searchButton">Search</button>
         </div>
       </div>
+  
+     </div>
+    <section>
       <div id="movieList" class="columns is-multiline"></div>
-      <div id="movieDetails" class="columns is-multiline"></div>
-      <div id="trailerSection"></div>
-    </div>
+        <div id="movieDetails" class="columns is-multiline"></div>
+        <div id="trailerSection"></div>
+       </div>
+     </section>
+   
   </section>
   <script src="script.js"></script>
 </body>
