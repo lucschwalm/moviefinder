@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var movieList = document.getElementById('movieList');
     var movieDetails = document.getElementById('movieDetails');
     var trailerSection = document.getElementById('trailerSection');
+    var omdbAPIKey = "5f12c8c3";
+    var youtubeAPIKey = "AIzaSyCQEc2oj1t3PKi3DjDpoYiquIfCcrVBSi0";
   
     searchButton.addEventListener('click', function() {
       var searchTerm = searchInput.value;
@@ -14,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
       trailerSection.innerHTML = '';
   
       // Fetch movie data from OMDB API
-      fetch('http://www.omdbapi.com/?apikey=5f12c8c3&s=' + searchTerm)
+      fetch('http://www.omdbapi.com/?apikey=' + omdbAPIKey + '&s=' + searchTerm)
         .then(function(response) {
           return response.json();
         })
@@ -50,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
       movieCard.addEventListener('click', function() {
         // Fetch movie details from OMDB API
-        fetch('http://www.omdbapi.com/?apikey=YOUR_API_KEY&i=' + movie.imdbID)
+        fetch('http://www.omdbapi.com/?apikey=' + omdbAPIKey + '&i=' + movie.imdbID)
           .then(function(response) {
             return response.json();
           })
@@ -62,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
           });
   
         // Fetch movie trailer from YouTube API
-        fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + movie.Title + ' trailer&key=YOUR_API_KEY')
+        fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + movie.Title + ' trailer&key=' + youtubeAPIKey)
           .then(function(response) {
             return response.json();
           })
