@@ -6,15 +6,19 @@ document.addEventListener('DOMContentLoaded', function() {
     var trailerSection = document.getElementById('trailerSection');
     var omdbAPIKey = "5f12c8c3";
     var youtubeAPIKey = "AIzaSyCQEc2oj1t3PKi3DjDpoYiquIfCcrVBSi0";
+
+    function clearResults() {
+      movieList.innerHTML = '';
+      movieDetails.innerHTML = '';
+      trailerSection.innerHTML = '';
+    }
   
     searchButton.addEventListener('click', function() {
       var searchTerm = searchInput.value;
   
       // Clear previous search results
-      movieList.innerHTML = '';
-      movieDetails.innerHTML = '';
-      trailerSection.innerHTML = '';
-  
+      clearResults(); 
+      
       // Fetch movie data from OMDB API
       fetch('http://www.omdbapi.com/?apikey=' + omdbAPIKey + '&s=' + searchTerm)
         .then(function(response) {
@@ -51,6 +55,8 @@ document.addEventListener('DOMContentLoaded', function() {
       movieList.appendChild(movieCard);
   
       movieCard.addEventListener('click', function() {
+        clearResults();
+        createMovieCard(movie);
         // Fetch movie details from OMDB API
         fetch('http://www.omdbapi.com/?apikey=' + omdbAPIKey + '&i=' + movie.imdbID)
           .then(function(response) {
