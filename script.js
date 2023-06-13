@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(function(data) {
           if (data.Response === 'True') {
             var movies = data.Search;
-            movies.forEach(function(movie) {git 
+            movies.forEach(function(movie) { 
               createMovieCard(movie);
             });
           } else {
@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         
         });
+      }
   
     function createMovieCard(movie) {
       var movieCard = document.createElement('div');
