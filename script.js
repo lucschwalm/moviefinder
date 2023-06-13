@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(function(data) {
           if (data.Response === 'True') {
             var movies = data.Search;
-            movies.forEach(function(movie) {
+            movies.forEach(function(movie) {git 
               createMovieCard(movie);
             });
           } else {
@@ -32,7 +32,11 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(function(error) {
           console.log('Error:', error);
+
+        
         });
+        var element= document.getElementById("elementToHide");
+          element.classList.remove("is-hidden")
     });
   
     function createMovieCard(movie) {
@@ -100,4 +104,6 @@ document.addEventListener('DOMContentLoaded', function() {
       `;
       trailerSection.innerHTML = trailerHTML;
     }
-  });
+  //function to hide the box that apears under movie selections
+  }
+)
