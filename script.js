@@ -38,6 +38,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function searchMovie(searchTerm) {
       // Clear previous search results
       clearResults(); 
+      var element= document.getElementById("elementToHide");
+      element.classList.remove("is-hidden");
       
       // Fetch movie data from OMDB API
       fetch('http://www.omdbapi.com/?apikey=' + omdbAPIKey + '&s=' + searchTerm)
@@ -47,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(function(data) {
           if (data.Response === 'True') {
             var movies = data.Search;
-            movies.forEach(function(movie) {
+            movies.forEach(function(movie) {git 
               createMovieCard(movie);
             });
           } else {
@@ -56,6 +58,8 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(function(error) {
           console.log('Error:', error);
+
+        
         });
   
     function createMovieCard(movie) {
@@ -125,8 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
       `;
       trailerSection.innerHTML = trailerHTML;
     }
-    }
-
+      
     searchButton.addEventListener('click', function() {
       var searchTerm = searchInput.value;
       // Sets localStorage for the search term, and adds a selector for it into the dropdown
