@@ -4,17 +4,43 @@ document.addEventListener('DOMContentLoaded', function() {
     var movieList = document.getElementById('movieList');
     var movieDetails = document.getElementById('movieDetails');
     var trailerSection = document.getElementById('trailerSection');
+    var dropdown = document.querySelector('.dropdown');
+    var dropdownContent = document.querySelector('.dropdown-content');
     var omdbAPIKey = "5f12c8c3";
     var youtubeAPIKey = "AIzaSyCQEc2oj1t3PKi3DjDpoYiquIfCcrVBSi0";
-  
-    searchButton.addEventListener('click', function() {
-      var searchTerm = searchInput.value;
-  
-      // Clear previous search results
+
+    function clearResults() {
       movieList.innerHTML = '';
       movieDetails.innerHTML = '';
       trailerSection.innerHTML = '';
-  
+    }
+    
+    dropdown.addEventListener("click", function(event) {
+      event.stopPropagation();
+      if(dropdown.classList.contains("is-active")){
+        dropdown.classList.remove("is-active");
+      }else{
+        dropdown.classList.add("is-active");
+      }
+    })
+
+    // Populates the history dropdown on page load
+    function makeHistory() {
+      for(i=0; i<localStorage.length; i++){
+        var newHistory = document.createElement("a");
+        newHistory.classList.add("dropdown-item");
+        newHistory.textContent = localStorage.getItem(localStorage.key(i));
+        dropdownContent.append(newHistory);
+      }
+    }
+    makeHistory();
+
+    function searchMovie(searchTerm) {
+      // Clear previous search results
+      clearResults(); 
+      var element= document.getElementById("elementToHide");
+      element.classList.remove("is-hidden");
+      
       // Fetch movie data from OMDB API
       fetch('http://www.omdbapi.com/?apikey=' + omdbAPIKey + '&s=' + searchTerm)
         .then(function(response) {
@@ -35,9 +61,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         
         });
-        var element= document.getElementById("elementToHide");
-          element.classList.remove("is-hidden")
-    });
   
     function createMovieCard(movie) {
       var movieCard = document.createElement('div');
@@ -55,6 +78,8 @@ document.addEventListener('DOMContentLoaded', function() {
       movieList.appendChild(movieCard);
   
       movieCard.addEventListener('click', function() {
+        clearResults();
+        createMovieCard(movie);
         // Fetch movie details from OMDB API
         fetch('http://www.omdbapi.com/?apikey=' + omdbAPIKey + '&i=' + movie.imdbID)
           .then(function(response) {
@@ -104,6 +129,21 @@ document.addEventListener('DOMContentLoaded', function() {
       `;
       trailerSection.innerHTML = trailerHTML;
     }
-  //function to hide the box that apears under movie selections
-  }
-)
+      
+    searchButton.addEventListener('click', function() {
+      var searchTerm = searchInput.value;
+      // Sets localStorage for the search term, and adds a selector for it into the dropdown
+      localStorage.setItem(searchTerm, searchTerm);
+      var newHistory = document.createElement("a");
+      newHistory.classList.add("dropdown-item");
+      newHistory.textContent = searchTerm;
+      dropdownContent.append(newHistory);
+
+      searchMovie(searchTerm);
+    });
+
+    dropdownContent.addEventListener('click', function(event){
+      var searchTerm = event.target.textContent;
+      searchMovie(searchTerm);
+    })
+});
