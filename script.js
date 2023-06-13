@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var movieList = document.getElementById('movieList');
     var movieDetails = document.getElementById('movieDetails');
     var trailerSection = document.getElementById('trailerSection');
+    var dropdown = document.querySelector('.dropdown');
+    var dropdownContent = document.querySelector('.dropdown-content');
     var omdbAPIKey = "5f12c8c3";
     var youtubeAPIKey = "AIzaSyCQEc2oj1t3PKi3DjDpoYiquIfCcrVBSi0";
 
@@ -12,10 +14,28 @@ document.addEventListener('DOMContentLoaded', function() {
       movieDetails.innerHTML = '';
       trailerSection.innerHTML = '';
     }
-  
-    searchButton.addEventListener('click', function() {
-      var searchTerm = searchInput.value;
-  
+    
+    dropdown.addEventListener("click", function(event) {
+      event.stopPropagation();
+      if(dropdown.classList.contains("is-active")){
+        dropdown.classList.remove("is-active");
+      }else{
+        dropdown.classList.add("is-active");
+      }
+    })
+
+    // Populates the history dropdown on page load
+    function makeHistory() {
+      for(i=0; i<localStorage.length; i++){
+        var newHistory = document.createElement("a");
+        newHistory.classList.add("dropdown-item");
+        newHistory.textContent = localStorage.getItem(localStorage.key(i));
+        dropdownContent.append(newHistory);
+      }
+    }
+    makeHistory();
+
+    function searchMovie(searchTerm) {
       // Clear previous search results
       clearResults(); 
       
@@ -37,7 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(function(error) {
           console.log('Error:', error);
         });
-    });
   
     function createMovieCard(movie) {
       var movieCard = document.createElement('div');
@@ -106,4 +125,22 @@ document.addEventListener('DOMContentLoaded', function() {
       `;
       trailerSection.innerHTML = trailerHTML;
     }
-  });
+    }
+
+    searchButton.addEventListener('click', function() {
+      var searchTerm = searchInput.value;
+      // Sets localStorage for the search term, and adds a selector for it into the dropdown
+      localStorage.setItem(searchTerm, searchTerm);
+      var newHistory = document.createElement("a");
+      newHistory.classList.add("dropdown-item");
+      newHistory.textContent = searchTerm;
+      dropdownContent.append(newHistory);
+
+      searchMovie(searchTerm);
+    });
+
+    dropdownContent.addEventListener('click', function(event){
+      var searchTerm = event.target.textContent;
+      searchMovie(searchTerm);
+    })
+});
