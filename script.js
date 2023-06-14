@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function displayTrailer(videoId) {
       var trailerHTML = `
         <div class="column">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
+          <iframe width="100%" height="15" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
         </div>
       `;
       trailerSection.innerHTML = trailerHTML;
