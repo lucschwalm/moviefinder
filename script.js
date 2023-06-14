@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var dropdownContent = document.querySelector('.dropdown-content');
     var omdbAPIKey = "5f12c8c3";
     var youtubeAPIKey = "AIzaSyCQEc2oj1t3PKi3DjDpoYiquIfCcrVBSi0";
+    
+    var historyNum = 0;
 
     function clearResults() {
       movieList.innerHTML = '';
@@ -27,10 +29,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Populates the history dropdown on page load
     function makeHistory() {
       for(i=0; i<localStorage.length; i++){
-        var newHistory = document.createElement("a");
-        newHistory.classList.add("dropdown-item");
-        newHistory.textContent = localStorage.getItem(localStorage.key(i));
-        dropdownContent.append(newHistory);
+        var currentkey = localStorage.key(i);
+        if(currentkey.substring(0, currentkey.length-1) == "history"){
+          historyNum++;
+          var newHistory = document.createElement("a");
+          newHistory.classList.add("dropdown-item");
+          newHistory.textContent = localStorage.getItem(localStorage.key(i));
+          dropdownContent.append(newHistory);
+        }
       }
     }
     makeHistory();
@@ -134,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
     searchButton.addEventListener('click', function() {
       var searchTerm = searchInput.value;
       // Sets localStorage for the search term, and adds a selector for it into the dropdown
-      localStorage.setItem(searchTerm, searchTerm);
+      localStorage.setItem("history" + historyNum, searchTerm);
       var newHistory = document.createElement("a");
       newHistory.classList.add("dropdown-item");
       newHistory.textContent = searchTerm;
