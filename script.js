@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
       element.classList.remove("is-hidden");
       
       // Fetch movie data from OMDB API
-      fetch('http://www.omdbapi.com/?apikey=' + omdbAPIKey + '&s=' + searchTerm)
+      fetch('https://www.omdbapi.com/?apikey=' + omdbAPIKey + '&s=' + searchTerm)
         .then(function(response) {
           return response.json();
         })
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
         clearResults();
         createMovieCard(movie);
         // Fetch movie details from OMDB API
-        fetch('http://www.omdbapi.com/?apikey=' + omdbAPIKey + '&i=' + movie.imdbID)
+        fetch('https://www.omdbapi.com/?apikey=' + omdbAPIKey + '&i=' + movie.imdbID)
           .then(function(response) {
             return response.json();
           })
