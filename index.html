@@ -3,25 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="mybulma/css/mystyles.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel ="stylesheet" href="./style.css">
   <title>MovieFinder</title>
 </head>
 <body>
-  <section class="section">
-    <div class="container">
-      <h1 class="title">MovieFinder</h1>
+  <div>
+    <ul>
+      <li><a class="active" href="#home">Home</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </div>
+  <section class="hero has-background-link">
+    <div class="hero-body columns is-mobile">
+      <h1 class="title column has-text-white">MovieFinder</h1>
+      <div class="dropdown is-right mb-6">
+        <div class="dropdown mt-3">
+          <div class="dropdown-trigger ">
+            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+              <span>History</span>
+              <span class="icon is-small">
+                <i class="fas fa-angle-down" aria-hidden="true"></i>
+              </span>
+            </button>
+          </div>
+          <div class="dropdown-menu" id="dropdown-menu" role="menu">
+            <div class="dropdown-content">
+            </div>
+          </div>
+        </div>
+    </div>
+  </section>
+    <section class="section">
+     <div class ="column is-half is-offset-one-quarter is-medium">
       <div class="field has-addons">
-        <div class="control">
-          <input class="input" type="text" id="searchInput" placeholder="Search for a movie">
+        <div class="control is-expanded">
+        <input id="searchInput" class="input is-medium" type="text" placeholder="Search for a movie">
         </div>
         <div class="control">
-          <button class="button is-primary" id="searchButton">Search</button>
+          <button class="button is-link is-medium" id="searchButton">Search</button>
         </div>
       </div>
-      <div id="movieList" class="columns is-multiline"></div>
-      <div id="movieDetails" class="columns is-multiline"></div>
-      <div id="trailerSection"></div>
-    </div>
+  
+     </div>
+    <section class="section2 has-background-grey">
+      <div id= "elementToHide" class="box is-hidden">
+      <div id="movieList" class="columns is-multiline is-mobile"></div>
+        <div id="movieDetails" class="columns is-multiline is-mobile"></div>
+        <div id="trailerSection"></div>
+       </div>
+     </section>
+   
   </section>
   <script src="script.js"></script>
 </body>
