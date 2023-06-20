@@ -13,3 +13,18 @@ Simply search the title of a movie you're interested in, and click on the image 
 # Links
 Github: https://github.com/lucschwalm/moviefinder/edit/main/
 Site: https://lucschwalm.github.io/moviefinder/
+
+# Credit:
+Team  is:
+* <a href="https://github.com/khanadib21" target="_blank">Adib Akram Khan</a>
+* <a href="https://github.com/lucschwalm" target="_blank">Luc Schwalm </a>
+* <a href="https://github.com/RodolfoSL" target="_blank">Rodolfo Silva</a>
+* <a href="https://github.com/robbi19" target="_blank">Robbin Collins</a>
+
+June 2023
+
+# License
+
+MIT License
+
+Copyright (c)
